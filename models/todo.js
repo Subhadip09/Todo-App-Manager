@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     static addTodo({ title, dueDate }) {
       return this.create({ title: title, dueDate: dueDate, completed: false });
     }
+
     static async overdue() {
       return this.findAll({
         where: {
@@ -45,18 +46,28 @@ module.exports = (sequelize, DataTypes) => {
         },
       });
     }
-    static async remove(id) {
-      return this.destroy({
+
+    static async completed() {
+      return this.findAll({
         where: {
-          id: id,
+          completed: true,
         },
       });
     }
 
-    markAsCompleted() {
-      return this.update({ completed: true });
+    static async remove(id) {
+      return this.destroy({
+        where: {
+          id,
+        },
+      });
+    }
+
+    setCompletionStatus(completed) {
+      return this.update({ completed });
     }
   }
+
   Todo.init(
     {
       title: DataTypes.STRING,

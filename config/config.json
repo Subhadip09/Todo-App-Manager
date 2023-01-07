@@ -11,11 +11,11 @@
       "password": "1234",
       "database": "wd-todo-test",
       "host": "127.0.0.1",
-      "dialect": "postgres",
-      "logging": false
+      "dialect": "postgres"
     },
     "production": {
       "use_env_variable": "DATABASE_URL",
       "dialect": "postgres"
+      }
     }
-  }
+  
